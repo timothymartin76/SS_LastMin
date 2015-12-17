@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../build/nv.d3.js"></script>
+    <script src="lib/stream_layers.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        text {
+            font: 13px Lato;
+        }
+
+        svg {
+            display: block;
+            float: left;
+        }
+     
+        #test1 {
+            height: 400px !important;
+            width: 400px !important;
+        }
+
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .nvd3.nv-pie.nv-chart-donut2 .nv-pie-title {
+            fill: rgba(70, 107, 168, 0.78);
+        }
+
+        .nvd3.nv-pie.nv-chart-donut1 .nv-pie-title {
+            opacity: 0.4;
+            fill: rgba(224, 116, 76, 0.91);
+        }
+
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+
+<svg id="test1" class="mypiechart"></svg>
+
+<svg id="test2" class="mypiechart"></svg>
+
+
+
+<script>
+
+
+	
+	 var testdata = [
+        {key: "ASP Resolved", y: 508444},
+        {key: "Agent", y: 431858},
+        {key: "NLU Resolved", y: 112751},
+        {key: "MOIA Resolved", y: 10636}
+    ];
+
+    var height = 350;
+    var width = 350;
+
+    var chart1;
+    nv.addGraph(function() {
+        var chart1 = nv.models.pieChart()
+            .x(function(d) { return d.key })
+            .y(function(d) { return d.y })
+            .donut(true)
+            .width(width)
+            .height(height)
+			.labelType('percent')
+			.valueFormat(d3.format('.3s'))
+            .padAngle(.08)
+            .cornerRadius(5)
+            .id('donut1'); // allow custom CSS for this one svg
+
+        chart1.title("Aug-15");
+       // chart1.pie.donutLabelsOutside(true).donut(true);
+	   
+	   
+
+        d3.select("#test1")
+            .datum(testdata)
+            .transition().duration(1200)
+            .call(chart1);
+
+        //nv.utils.windowResize(chart1.update);
+
+        return chart1;
+
+    });
+
+   
+
+
+</script>
+</body>
+</html>

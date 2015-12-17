@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../build/nv.d3.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        text {
+            font: 12px Lato;
+        }
+        svg {
+            display: block;
+        }
+        html, body, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+<button onclick="expandLegend();">Expand/Contract Legend</button>
+    <script>
+        var expandLegend = function() {
+            var exp = chart.legend.expanded();
+            chart.legend.expanded(!exp);
+            chart.update();
+        }
+    </script>
+<svg id="chart1"></svg>
+
+<script>
+
+    var histcatexplong = [
+        {
+            "key" : "School-Related Inquiries" ,
+			"color" : "#74c476",
+            "values" : [[1438430400000,	46],
+			[1438516800000,	74],
+			[1438603200000,	383],
+			[1438689600000,	292],
+			[1438776000000,	350],
+			[1438862400000,	341],
+			[1438948800000,	294],
+			[1439035200000,	47],
+			[1439121600000,	76],
+			[1439208000000,	448],
+			[1439294400000,	471],
+			[1439380800000,	467],
+			[1439467200000,	486],
+			[1439553600000,	374],
+			[1439640000000,	81],
+			[1439726400000,	106],
+			[1439812800000,	585],
+			[1439899200000,	519],
+			[1439985600000,	462],
+			[1440072000000,	469],
+			[1440158400000,	467],
+			[1440244800000,	106],
+			[1440331200000,	129],
+			[1440417600000,	783],
+			[1440504000000,	599],
+			[1440590400000,	529],
+			[1440676800000,	486],
+			[1440763200000,	443],
+			[1440849600000,	115],
+			[1440936000000,	139],
+			[1441022400000,	938],
+			[1441108800000,	904],
+			[1441195200000,	793],
+			[1441281600000,	671],
+			[1441368000000,	531],
+			[1441454400000,	102],
+			[1441540800000,	148],
+			[1441627200000,	632],
+			[1441713600000,	1519],
+			[1441800000000,	1422],
+			[1441886400000,	919],
+			[1441972800000,	644],
+			[1442059200000,	115],
+			[1442145600000,	380],
+			[1442232000000,	778],
+			[1442318400000,	468],
+			[1442404800000,	722],
+			[1442491200000,	523],
+			[1442577600000,	401],
+			[1442664000000,	83],
+			[1442750400000,	186],
+			[1442836800000,	786],
+			[1442923200000,	868],
+			[1443009600000,	1004],
+			[1443096000000,	1060],
+			[1443182400000,	572],
+			[1443268800000,	82],
+			[1443355200000,	254],
+			[1443441600000,	525],
+			[1443528000000,	383],
+			[1443614400000,	423]]
+        } 	
+    ];
+
+    var colors = d3.scale.category20();
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.stackedAreaChart()
+            .useInteractiveGuideline(true)
+            .interpolate("cardinal")
+            .x(function(d) { return d[0] })
+            .y(function(d) { return d[1] })
+            .controlLabels({stacked: "Stacked"})
+            .margin({left: 100}) 
+            .margin({right: 100}) 
+			//.padData(true)
+			//.yDomain([0,3250000])
+            .duration(300);
+
+        chart.xAxis
+			//.ticks(10)
+			//.staggerLabels(true) 
+			.tickFormat(function(d) { return d3.time.format('%b-%d')(new Date(d)) });
+			
+		chart.xScale(d3.time.scale());
+		
+        chart.yAxis
+			.axisLabel('School-Related')
+			.ticks(8)
+			.tickFormat(d3.format(','));
+			
+			//Example of how to customize the tooltip.
+		chart.interactiveLayer
+			.tooltip
+			.headerFormatter(function(d) {return "Date: " + d3.time.format('%b-%d')(new Date(d));})
+			//.valueFormatter(d3.format(',.2f'));
+			
+			
+       chart.legend.vers('furious');
+
+        d3.select('#chart1')
+            .datum(histcatexplong)
+            .transition().duration(1000)
+            .call(chart)
+            .each('start', function() {
+                setTimeout(function() {
+                    d3.selectAll('#chart1 *').each(function() {
+                        if(this.__transition__)
+                            this.__transition__.duration = 1;
+                    })
+                }, 0)
+            });
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+
+
+</script>
+</body>
+</html>
