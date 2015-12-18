@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../build/nv.d3.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        text {
+            font: 12px Lato;
+        }
+        svg {
+            display: block;
+        }
+        html, body, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+<button onclick="expandLegend();">Expand/Contract Legend</button>
+    <script>
+        var expandLegend = function() {
+            var exp = chart.legend.expanded();
+            chart.legend.expanded(!exp);
+            chart.update();
+        }
+    </script>
+<svg id="chart1"></svg>
+
+<script>
+
+    var histcatexplong = [
+        {
+            "key" : "Bus or Subway - Information and Complaint" ,
+            "values" : [[1446354000000,	1],
+			[1446357600000,	3],
+			[1446361200000,	0],
+			[1446364800000,	0],
+			[1446368400000,	2],
+			[1446372000000,	2],
+			[1446375600000,	10],
+			[1446379200000,	18],
+			[1446382800000,	31],
+			[1446386400000,	34],
+			[1446390000000,	34],
+			[1446393600000,	28],
+			[1446397200000,	18],
+			[1446400800000,	20],
+			[1446404400000,	12],
+			[1446408000000,	9],
+			[1446411600000,	15],
+			[1446415200000,	13],
+			[1446418800000,	13],
+			[1446422400000,	6],
+			[1446426000000,	13],
+			[1446429600000,	5],
+			[1446433200000,	8],
+			[1446436800000,	3]]
+
+        } ,
+		
+		 {
+            "key" : "Find a Police Precinct Related Inq" ,
+            "values" : [[1446354000000,	3],
+			[1446357600000,	20],
+			[1446361200000,	18],
+			[1446364800000,	15],
+			[1446368400000,	14],
+			[1446372000000,	17],
+			[1446375600000,	10],
+			[1446379200000,	21],
+			[1446382800000,	27],
+			[1446386400000,	30],
+			[1446390000000,	31],
+			[1446393600000,	28],
+			[1446397200000,	13],
+			[1446400800000,	26],
+			[1446404400000,	22],
+			[1446408000000,	25],
+			[1446411600000,	21],
+			[1446415200000,	18],
+			[1446418800000,	20],
+			[1446422400000,	18],
+			[1446426000000,	19],
+			[1446429600000,	20],
+			[1446433200000,	14],
+			[1446436800000,	12]]
+
+        } ,
+		
+		 {
+            "key" : "Find a Towed Vehicle Related Inquiries" ,
+            "values" : [[1446354000000,	1],
+			[1446357600000,	38],
+			[1446361200000,	33],
+			[1446364800000,	9],
+			[1446368400000,	25],
+			[1446372000000,	25],
+			[1446375600000,	20],
+			[1446379200000,	65],
+			[1446382800000,	78],
+			[1446386400000,	68],
+			[1446390000000,	81],
+			[1446393600000,	76],
+			[1446397200000,	49],
+			[1446400800000,	42],
+			[1446404400000,	44],
+			[1446408000000,	25],
+			[1446411600000,	33],
+			[1446415200000,	22],
+			[1446418800000,	27],
+			[1446422400000,	21],
+			[1446426000000,	14],
+			[1446429600000,	21],
+			[1446433200000,	14],
+			[1446436800000,	7]]
+
+        } ,
+		
+		 {
+            "key" : "New York City Marathon" ,
+            "values" : [[1446354000000,	13],
+			[1446357600000,	10],
+			[1446361200000,	0],
+			[1446364800000,	4],
+			[1446368400000,	10],
+			[1446372000000,	7],
+			[1446375600000,	36],
+			[1446379200000,	93],
+			[1446382800000,	134],
+			[1446386400000,	192],
+			[1446390000000,	124],
+			[1446393600000,	119],
+			[1446397200000,	113],
+			[1446400800000,	126],
+			[1446404400000,	84],
+			[1446408000000,	49],
+			[1446411600000,	55],
+			[1446415200000,	41],
+			[1446418800000,	23],
+			[1446422400000,	3],
+			[1446426000000,	2],
+			[1446429600000,	0],
+			[1446433200000,	0],
+			[1446436800000,	1]]
+
+        } ,
+		
+		 {
+            "key" : "Street closures Related Inq" ,
+            "values" : [[1446354000000,	2],
+			[1446357600000,	0],
+			[1446361200000,	1],
+			[1446364800000,	0],
+			[1446368400000,	0],
+			[1446372000000,	0],
+			[1446375600000,	11],
+			[1446379200000,	11],
+			[1446382800000,	9],
+			[1446386400000,	11],
+			[1446390000000,	14],
+			[1446393600000,	14],
+			[1446397200000,	5],
+			[1446400800000,	4],
+			[1446404400000,	6],
+			[1446408000000,	6],
+			[1446411600000,	7],
+			[1446415200000,	3],
+			[1446418800000,	2],
+			[1446422400000,	3],
+			[1446426000000,	1],
+			[1446429600000,	0],
+			[1446433200000,	0],
+			[1446436800000,	0]]
+
+        } 
+
+		
+    ];
+
+    var colors = d3.scale.category20();
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.stackedAreaChart()
+            .useInteractiveGuideline(true)
+            .interpolate("cardinal")
+            .x(function(d) { return d[0] })
+            .y(function(d) { return d[1] })
+            .controlLabels({stacked: "Stacked"})
+            .margin({left: 100}) 
+            .margin({right: 100}) 
+			//.padData(true)
+			//.yDomain([0,3250000])
+            .duration(300);
+
+        chart.xAxis
+			.ticks(3)
+			//.staggerLabels(true) 
+			.tickFormat(function(d) { return d3.time.format('%x %X')(new Date(d)) });
+			
+		chart.xScale(d3.time.scale());
+		
+        chart.yAxis
+			.ticks(8)
+			.tickFormat(d3.format(','));
+			
+			//Example of how to customize the tooltip.
+		chart.interactiveLayer
+			.tooltip
+			.headerFormatter(function(d) {return "Date: " + d3.time.format('%x %X')(new Date(d));})
+			//.valueFormatter(d3.format(',.2f'));
+			
+			
+        //chart.legend.vers('furious');
+
+        d3.select('#chart1')
+            .datum(histcatexplong)
+            .transition().duration(1000)
+            .call(chart)
+            .each('start', function() {
+                setTimeout(function() {
+                    d3.selectAll('#chart1 *').each(function() {
+                        if(this.__transition__)
+                            this.__transition__.duration = 1;
+                    })
+                }, 0)
+            });
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+
+
+</script>
+</body>
+</html>
