@@ -23,21 +23,14 @@
     </style>
 </head>
 <body class='with-3d-shadow with-transitions'>
-<button onclick="expandLegend();">Expand/Contract Legend</button>
-    <script>
-        var expandLegend = function() {
-            var exp = chart.legend.expanded();
-            chart.legend.expanded(!exp);
-            chart.update();
-        }
-    </script>
+
 <svg id="chart1"></svg>
 
 <script>
 
     var histcatexplong = [
         {
-            "key" : "Bus or Subway - Information and Complaint" ,
+            "key" : "Bus or Subway - Information/Complaint" ,
             "values" : [[1446354000000,	1],
 			[1446357600000,	3],
 			[1446361200000,	0],
@@ -193,7 +186,7 @@
             .interpolate("cardinal")
             .x(function(d) { return d[0] })
             .y(function(d) { return d[1] })
-            .controlLabels({stacked: "Stacked"})
+            .showControls(false)
             .margin({left: 100}) 
             .margin({right: 100}) 
 			//.padData(true)
@@ -208,7 +201,8 @@
 		chart.xScale(d3.time.scale());
 		
         chart.yAxis
-			.ticks(8)
+			.ticks(4)
+			.axisLabel('Marathon')
 			.tickFormat(d3.format(','));
 			
 			//Example of how to customize the tooltip.
