@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../build/nv.d3.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        text {
+            font: 12px Lato;
+        }
+        svg {
+            display: block;
+        }
+        html, body, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+		.nv-axis .tick line {
+		display:none;
+		}
+		
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+
+
+<svg id="chart1"></svg>
+
+<script>
+    var histcatexplong = [
+        {
+            "key" : "GRAND LARCENY VEHICLE" ,
+            "values" : [ [ 946771200000 , 35442] , 
+			[ 978393600000 , 29531] , 
+			[ 1009929600000 , 26656] , 
+			[ 1041465600000 , 23413] , 
+			[ 1073001600000 , 20884] , 
+			[ 1104624000000 , 18246] , 
+			[ 1136160000000 , 15745] , 
+			[ 1167696000000 , 13174] , 
+			[ 1199232000000 , 12482] , 
+			[ 1230854400000 , 10670] , 
+			[ 1262390400000 , 10329] , 
+			[ 1293926400000 , 9314] , 
+			[ 1325462400000 , 8093] , 
+			[ 1357084800000 , 7400],
+			[ 1388620800000 , 7664]] 	
+        } ,
+		
+		{
+            "key" : "GRAND LARCENY" ,
+            "values" : [ [ 946771200000 , 49631] , 
+			[ 978393600000 , 46329] , 
+			[ 1009929600000 , 45771] , 
+			[ 1041465600000 , 46751] , 
+			[ 1073001600000 , 48763] , 
+			[ 1104624000000 , 48243] , 
+			[ 1136160000000 , 46625] , 
+			[ 1167696000000 , 44924] , 
+			[ 1199232000000 , 44242] , 
+			[ 1230854400000 , 39580] , 
+			[ 1262390400000 , 37835] , 
+			[ 1293926400000 , 38501] , 
+			[ 1325462400000 , 42497] , 
+			[ 1357084800000 , 45368],
+			[ 1388620800000 , 43862]] 	
+        } ,
+		
+		{
+            "key" : "BURGLARY" ,
+            "values" : [ [ 946771200000 , 38352] , 
+			[ 978393600000 , 32763] , 
+			[ 1009929600000 , 31275] , 
+			[ 1041465600000 , 29110] , 
+			[ 1073001600000 , 26976] , 
+			[ 1104624000000 , 24117] , 
+			[ 1136160000000 , 23143] , 
+			[ 1167696000000 , 21762] , 
+			[ 1199232000000 , 20725] , 
+			[ 1230854400000 , 19430] , 
+			[ 1262390400000 , 18600] , 
+			[ 1293926400000 , 18720] , 
+			[ 1325462400000 , 19168] , 
+			[ 1357084800000 , 17429],
+			[ 1388620800000 , 16765]] 	
+        } ,
+		
+		{
+            "key" : "FELONY ASSAULT" ,
+            "values" : [ [ 946771200000 , 25924] , 
+			[ 978393600000 , 23453] , 
+			[ 1009929600000 , 21147] , 
+			[ 1041465600000 , 19139] , 
+			[ 1073001600000 , 18622] , 
+			[ 1104624000000 , 17750] , 
+			[ 1136160000000 , 17309] , 
+			[ 1167696000000 , 17493] , 
+			[ 1199232000000 , 16284] , 
+			[ 1230854400000 , 16773] , 
+			[ 1262390400000 , 16956] , 
+			[ 1293926400000 , 18482] , 
+			[ 1325462400000 , 19381] , 
+			[ 1357084800000 , 20297],
+			[ 1388620800000 , 20207]] 	
+        } ,
+		
+		{
+            "key" : "ROBBERY" ,
+            "values" : [ [ 946771200000 , 32562] , 
+			[ 978393600000 , 28202] , 
+			[ 1009929600000 , 27229] , 
+			[ 1041465600000 , 25989] , 
+			[ 1073001600000 , 24373] , 
+			[ 1104624000000 , 24722] , 
+			[ 1136160000000 , 23739] , 
+			[ 1167696000000 , 21809] , 
+			[ 1199232000000 , 22401] , 
+			[ 1230854400000 , 18601] , 
+			[ 1262390400000 , 19486] , 
+			[ 1293926400000 , 19717] , 
+			[ 1325462400000 , 20144] , 
+			[ 1357084800000 , 19128],
+			[ 1388620800000 , 16539]] 	
+        } ,
+		
+		{
+            "key" : "RAPE" ,
+            "values" : [ [ 946771200000 , 2068] , 
+			[ 978393600000 , 1981] , 
+			[ 1009929600000 , 2144] , 
+			[ 1041465600000 , 2070] , 
+			[ 1073001600000 , 1905] , 
+			[ 1104624000000 , 1858] , 
+			[ 1136160000000 , 1525] , 
+			[ 1167696000000 , 1351] , 
+			[ 1199232000000 , 1299] , 
+			[ 1230854400000 , 1205] , 
+			[ 1262390400000 , 1373] , 
+			[ 1293926400000 , 1420] , 
+			[ 1325462400000 , 1445] , 
+			[ 1357084800000 , 1378],
+			[ 1388620800000 , 1352]] 	
+        } ,
+		
+		{
+            "key" : "MURDER/MANSLAUGHTER" ,
+            "values" : [ [ 946771200000 , 673] , 
+			[ 978393600000 , 649] , 
+			[ 1009929600000 , 587] , 
+			[ 1041465600000 , 597] , 
+			[ 1073001600000 , 570] , 
+			[ 1104624000000 , 539] , 
+			[ 1136160000000 , 596] , 
+			[ 1167696000000 , 496] , 
+			[ 1199232000000 , 523] , 
+			[ 1230854400000 , 471] , 
+			[ 1262390400000 , 536] , 
+			[ 1293926400000 , 515] , 
+			[ 1325462400000 , 419] , 
+			[ 1357084800000 , 335],
+			[ 1388620800000 , 333]] 	
+        } 
+
+    ];
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.stackedAreaChart()
+            .useInteractiveGuideline(true)
+            .x(function(d) { return d[0] })
+            .y(function(d) { return d[1] })
+			.color(['#D1FDBD', '#A0CA50', '#3E454C', '#2185C5', '#7ECEFD', '#EBE2D3', '#FF7F66'])
+            .controlLabels({stacked: "Stacked"})
+
+			
+			//.interpolate("step")
+			
+			//.padData(true)
+			//.yDomain([0,3250000])
+            .duration(300);
+        chart.xAxis
+			//.ticks(10)
+			//.staggerLabels(true) 
+			.tickFormat(function(d) { return d3.time.format(' %Y')(new Date(d)) });
+			
+		chart.xScale(d3.time.scale());
+		
+	 chart.margin({left: 100}) 
+     chart.margin({right: 100}) 
+		
+        chart.yAxis
+			.axisLabel('')
+			.axisLabelDistance(20)
+			.ticks(8)
+			.tickFormat(d3.format('.2s'));
+			
+			
+			//Example of how to customize the tooltip.
+		chart.interactiveLayer
+			.tooltip
+			.headerFormatter(function(d) {return "Year: " + d3.time.format('%Y')(new Date(d));})
+			.valueFormatter(d3.format(','));
+			
+			d3.select('#chart1')
+			  .append("text")
+			  .attr("x", 300)             
+			  .attr("y", 100)
+			  .attr("text-anchor", "middle")  
+			  .style("font-size", "18px")		  
+			  .text("NYC Felony Offenses 2000 - 2014");
+			
+        chart.legend.vers('furious');
+        d3.select('#chart1')
+            .datum(histcatexplong)
+            .transition().duration(1000)
+            .call(chart)
+            .each('start', function() {
+                setTimeout(function() {
+                    d3.selectAll('#chart1 *').each(function() {
+                        if(this.__transition__)
+                            this.__transition__.duration = 1;
+                    })
+                }, 0)
+            });
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+</script>
+</body>
+</html>
