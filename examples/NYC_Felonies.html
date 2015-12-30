@@ -34,7 +34,7 @@
 <script>
     var histcatexplong = [
         {
-            "key" : "GRAND LARCENY VEHICLE" ,
+            "key" : "GRAND LARCENY MV" ,
             "values" : [ [ 946771200000 , 35442] , 
 			[ 978393600000 , 29531] , 
 			[ 1009929600000 , 26656] , 
@@ -148,7 +148,7 @@
         } ,
 		
 		{
-            "key" : "MURDER/MANSLAUGHTER" ,
+            "key" : "MURDER" ,
             "values" : [ [ 946771200000 , 673] , 
 			[ 978393600000 , 649] , 
 			[ 1009929600000 , 587] , 
@@ -174,9 +174,9 @@
             .useInteractiveGuideline(true)
             .x(function(d) { return d[0] })
             .y(function(d) { return d[1] })
-			.color(['#D1FDBD', '#A0CA50', '#3E454C', '#2185C5', '#7ECEFD', '#EBE2D3', '#FF7F66'])
+			.color(['#D1FDBD', '#A0CA50', '#3E454C', '#2185C5', '#7ECEFD', '#FDBF6F', '#D6301D'])
             .controlLabels({stacked: "Stacked"})
-		.showControls(false)
+			.showControls(false)
 			
 			//.interpolate("step")
 			
@@ -208,9 +208,9 @@
 			
 			d3.select('#chart1')
 			  .append("text")
-			  .attr("x", 300)             
-			  .attr("y", 100)
-			  .attr("text-anchor", "middle")  
+			  .attr("x", 450)             
+			  .attr("y", 80)
+			  .attr("text-anchor", "right")  
 			  .style("font-size", "18px")		  
 			  .text("NYC Felony Offenses 2000 - 2014");
 			
