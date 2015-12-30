@@ -176,7 +176,7 @@
             .y(function(d) { return d[1] })
 			.color(['#D1FDBD', '#A0CA50', '#3E454C', '#2185C5', '#7ECEFD', '#EBE2D3', '#FF7F66'])
             .controlLabels({stacked: "Stacked"})
-
+		.showControls(false)
 			
 			//.interpolate("step")
 			
@@ -214,7 +214,7 @@
 			  .style("font-size", "18px")		  
 			  .text("NYC Felony Offenses 2000 - 2014");
 			
-        chart.legend.vers('furious');
+        //chart.legend.vers('furious');
         d3.select('#chart1')
             .datum(histcatexplong)
             .transition().duration(1000)
