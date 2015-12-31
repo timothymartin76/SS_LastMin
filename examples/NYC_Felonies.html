@@ -2,18 +2,21 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="../build/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="../build2/nv.d3.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
-    <script src="../build/nv.d3.js"></script>
-	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <script src="../build2/nv.d3.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
 
     <style>
-        text {
-            font: 12px Lato;
-        }
+
         svg {
             display: block;
+			background-color: white;
         }
+		svg text {
+			fill: black;
+			}
+
         html, body, svg {
             margin: 0px;
             padding: 0px;
@@ -23,6 +26,9 @@
 		.nv-axis .tick line {
 		display:none;
 		}
+		
+
+
 		
     </style>
 </head>
@@ -174,9 +180,11 @@
             .useInteractiveGuideline(true)
             .x(function(d) { return d[0] })
             .y(function(d) { return d[1] })
-			.color(['#D1FDBD', '#A0CA50', '#3E454C', '#2185C5', '#7ECEFD', '#FDBF6F', '#D6301D'])
-            .controlLabels({stacked: "Stacked"})
-			.showControls(false)
+			.color(['#000000', '#004358', '#1F8A70', '#BEDB39', '#FFE11A', '#FD7400', '#ff0000'])
+            .controlLabels({stacked: "Stacked"}) 
+			.showControls(false)  
+			
+
 			
 			//.interpolate("step")
 			
@@ -191,7 +199,11 @@
 		chart.xScale(d3.time.scale());
 		
 	 chart.margin({left: 100}) 
-     chart.margin({right: 50}) 
+     chart.margin({right: 40}) 
+	 
+	 
+	 
+	 
 		
         chart.yAxis
 			.axisLabel('Annual Totals')
@@ -213,6 +225,8 @@
 			  .attr("text-anchor", "right")  
 			  .style("font-size", "18px")		  
 			  .text("");
+			  
+
 			
         //chart.legend.vers('furious');
         d3.select('#chart1')
