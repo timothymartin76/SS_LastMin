@@ -286,7 +286,7 @@ svg.nvd3-svg {
 
 
 .nvd3 text {
-    font: normal 15px Droid Sans Mono;
+    font: normal 12px Droid Sans Mono;
 }
 
 
@@ -527,7 +527,7 @@ svg.nvd3-svg {
     display: block;
 
     font-family: Droid Sans Mono;
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
     pointer-events: none;
 
