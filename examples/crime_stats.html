@@ -7,7 +7,7 @@
     <script src="https://rawgit.com/gka/d3-jetpack/master/d3-jetpack.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
     <style type="text/css">
-    body { font-family: 'Droid Sans Mono'; font-weight: 300; padding: 20px; font-size: 90%}
+    body { font-family: 'Droid Sans Mono'; font-weight: 300; padding: 20px; font-size: 80%;}
     th { text-align: left; }
     th, td { padding: 0 1em 0.5ex 0;}
     th.center, td.center { text-align: center; }
@@ -18,23 +18,27 @@
     <script>
 
     // the table rows, typically loaded from data file using d3.csv
-    var movies = [
-        { title: "• Overall crime is down XX% since 1990."},
-        { title: "• Overall crime is down XX% from last year."},
-        { title: "• Murder is up XX% from last year."},
-        { title: "• 31.2% of total felonies in Brooklyn."},
-        { title: "• Most murders occur in Brooklyn 37%"},
-        { title: "• Most grand larceny in Manhattan 37%"},
-        { title: "• Most crimes occurred on 6/1/2015."},
-        { title: "• May and Jan peak murders in NYC at 34."},
-        { title: "• Feb is lowest crime month in all categories."},
-        { title: "• Grand larceny peaks at Friday Noon hour."}
+   var movies = [
+        { offense: "Murder", hour: "1PM", day: "Saturday", month: "Aug", borough: "Bronx", change: "-1%"},
+		{ offense: "Rape", hour: "12AM", day: "Saturday", month: "May", borough: "Bronx", change: "-2%"},
+		{ offense: "Robbery", hour: "11PM", day: "Saturday", month: "Aug", borough: "Bronx", change: "-14%"},
+		{ offense: "Assault", hour: "10PM", day: "Sunday", month: "Aug", borough: "Bronx", change: "0%"},
+		{ offense: "Burglary", hour: "9AM", day: "Friday", month: "Aug", borough: "Bronx", change: "-4%"},
+		{ offense: "Grand Lar", hour: "12PM", day: "Friday", month: "Aug", borough: "Bronx", change: "-3%"},
+		{ offense: "Grand Lar MV", hour: "11PM", day: "Monday", month: "Sep", borough: "Bronx", change: "4%"}
+
     ];
 
     // column definitions
     var columns = [
-        { head: '2015 Felony Crime Stats', cl: 'title', html: ƒ('title') },
+        { head: 'Offense', cl: 'title', html: ƒ('offense') },
+        { head: 'Peak Hour', cl: 'center', html: ƒ('hour') },
+		{ head: 'Peak Day', cl: 'center', html: ƒ('day') },
+		{ head: 'Peak Month', cl: 'center', html: ƒ('month') },
+		{ head: '↑ Boro', cl: 'center', html: ƒ('borough') },
+		{ head: 'Δ 2014', cl: 'center', html: ƒ('change') }
     ];
+
 
     // create table
     var table = d3.select('body')
