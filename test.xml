@@ -1,0 +1,49 @@
+<saw:report xmlns:saw="com.siebel.analytics.web/report/v1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sawx="com.siebel.analytics.web/expression/v1.1" xmlVersion="201201160">
+   <saw:criteria xsi:type="saw:simpleCriteria" subjectArea="&quot;311 Service Request&quot;" withinHierarchy="true">
+      <saw:columns>
+         <saw:column xsi:type="saw:regularColumn" columnID="ca075f8739cc269fa">
+            <saw:columnFormula>
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Start Date"."Created Date"</sawx:expr></saw:columnFormula></saw:column>
+         <saw:column xsi:type="saw:regularColumn" columnID="ce87185ac83e4723c">
+            <saw:columnFormula>
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Agency Hierarchy"."Agency"</sawx:expr></saw:columnFormula></saw:column>
+         <saw:column xsi:type="saw:regularColumn" columnID="c9ed9b3e8473809cc">
+            <saw:columnFormula>
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Complaint Information"."Complaint Type"</sawx:expr></saw:columnFormula></saw:column>
+         <saw:column xsi:type="saw:regularColumn" columnID="c232602c106221e3f">
+            <saw:columnFormula>
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Service Request Facts"."# of SRs"</sawx:expr></saw:columnFormula></saw:column></saw:columns>
+      <saw:filter>
+         <sawx:expr xsi:type="sawx:logical" op="and">
+            <sawx:expr xsi:type="sawx:comparison" op="equal">
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Complaint Information"."Complaint Type"</sawx:expr>
+               <sawx:expr xsi:type="xsd:string">Noise - Residential</sawx:expr></sawx:expr>
+            <sawx:expr xsi:type="sawx:comparison" op="between">
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Start Date"."Created Date"</sawx:expr>
+               <sawx:expr xsi:type="sawx:variable" op="server">NYC311_PREVIOUS_7_DAY</sawx:expr>
+               <sawx:expr xsi:type="sawx:variable" op="server">NYC311_PREVIOUS_DAY</sawx:expr></sawx:expr>
+            <sawx:expr xsi:type="sawx:special" op="prompted">
+               <sawx:expr xsi:type="sawx:sqlExpression">"- Start Date"."Created Date"</sawx:expr></sawx:expr></sawx:expr></saw:filter></saw:criteria>
+   <saw:views currentView="0">
+      <saw:view xsi:type="saw:compoundView" name="compoundView!1">
+         <saw:cvTable>
+            <saw:cvRow>
+               <saw:cvCell viewName="titleView!1">
+                  <saw:displayFormat>
+                     <saw:formatSpec/></saw:displayFormat></saw:cvCell></saw:cvRow>
+            <saw:cvRow>
+               <saw:cvCell viewName="tableView!1">
+                  <saw:displayFormat>
+                     <saw:formatSpec/></saw:displayFormat></saw:cvCell></saw:cvRow></saw:cvTable></saw:view>
+      <saw:view xsi:type="saw:titleView" name="titleView!1"/>
+      <saw:view xsi:type="saw:tableView" name="tableView!1" scrollingEnabled="false">
+         <saw:edges>
+            <saw:edge axis="page" showColumnHeader="true"/>
+            <saw:edge axis="section"/>
+            <saw:edge axis="row" showColumnHeader="true">
+               <saw:edgeLayers>
+                  <saw:edgeLayer type="column" columnID="ca075f8739cc269fa"/>
+                  <saw:edgeLayer type="column" columnID="ce87185ac83e4723c"/>
+                  <saw:edgeLayer type="column" columnID="c9ed9b3e8473809cc"/>
+                  <saw:edgeLayer type="column" columnID="c232602c106221e3f"/></saw:edgeLayers></saw:edge>
+            <saw:edge axis="column" showColumnHeader="rollover"/></saw:edges></saw:view></saw:views></saw:report>
