@@ -1,0 +1,54 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:sawsoap="urn://oracle.bi.webservices/v7">
+   <soap:Body>
+      <sawsoap:executeXMLQueryResult>
+         <sawsoap:return xsi:type="sawsoap:QueryResults">
+            <sawsoap:rowset xsi:type="xsd:string"><![CDATA[<rowset xmlns="urn:schemas-microsoft-com:xml-analysis:rowset">
+	<Row>
+		<Column0>2016-03-23</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>449</Column3>
+	</Row>
+	<Row>
+		<Column0>2016-03-24</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>429</Column3>
+	</Row>
+	<Row>
+		<Column0>2016-03-25</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>534</Column3>
+	</Row>
+	<Row>
+		<Column0>2016-03-26</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>959</Column3>
+	</Row>
+	<Row>
+		<Column0>2016-03-27</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>896</Column3>
+	</Row>
+	<Row>
+		<Column0>2016-03-28</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>334</Column3>
+	</Row>
+	<Row>
+		<Column0>2016-03-29</Column0>
+		<Column1>NYPD</Column1>
+		<Column2>Noise - Residential</Column2>
+		<Column3>345</Column3>
+	</Row>
+</rowset>]]></sawsoap:rowset>
+            <sawsoap:queryID xsi:type="xsd:string">RSXS2_1</sawsoap:queryID>
+            <sawsoap:finished xsi:type="xsd:boolean">true</sawsoap:finished>
+         </sawsoap:return>
+      </sawsoap:executeXMLQueryResult>
+   </soap:Body>
+</soap:Envelope>
