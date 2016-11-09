@@ -27,10 +27,12 @@
 
 .nvd3 .nv-axis .nv-axislabel {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
 }
 
-
+.nvd3 text {
+    font: normal 15px Lato;
+}
 
 .nvd3 .nv-axis .zero line,
     /*this selector may not be necessary*/ .nvd3 .nv-axis line.zero {
