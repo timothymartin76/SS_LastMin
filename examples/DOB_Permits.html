@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../build/nv.d3b.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../build/nv.d3.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+
+    <style>
+
+        svg {
+            display: block;
+			background-color: transparent;
+        }
+		svg text {
+			fill: black;
+			}
+
+        html, body, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+		.nv-axis .tick line {
+		display:none;
+		}
+		
+
+
+		
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+
+
+<svg id="chart1"></svg>
+
+<script>
+    var histcatexplong = [
+        {
+            "key" : "NEW BUILDING" ,
+            "values" : [ [ 949190400000 , 8096] , 
+			[ 980812800000 , 10444] , 
+			[ 1012348800000 , 11019] , 
+			[ 1043884800000 , 13147] , 
+			[ 1075420800000 , 15789] , 
+			[ 1107043200000 , 17361] , 
+			[ 1138579200000 , 16652] , 
+			[ 1170115200000 , 15087] , 
+			[ 1201651200000 , 11239] , 
+			[ 1233273600000 , 8957] , 
+			[ 1264809600000 , 6486] , 
+			[ 1296345600000 , 5241] , 
+			[ 1327881600000 , 5181] , 
+			[ 1359504000000 , 5510],
+			[ 1391040000000 , 6496],
+			[ 1422576000000 , 7425],
+			[ 1454112000000 , 7526]]
+        } ,
+		
+		{
+            "key" : "ALT 1" ,
+            "values" : [ [ 949190400000 , 6618] , 
+			[ 980812800000 , 7011] , 
+			[ 1012348800000 , 7701] , 
+			[ 1043884800000 , 8549] , 
+			[ 1075420800000 , 9688] , 
+			[ 1107043200000 , 10813] , 
+			[ 1138579200000 , 10939] , 
+			[ 1170115200000 , 9781] , 
+			[ 1201651200000 , 8000] , 
+			[ 1233273600000 , 7070] , 
+			[ 1264809600000 , 6515] , 
+			[ 1296345600000 , 6727] , 
+			[ 1327881600000 , 6843] , 
+			[ 1359504000000 , 6552],
+			[ 1391040000000 , 6826],
+			[ 1422576000000 , 7277],
+			[ 1454112000000 , 8570]]
+        } ,
+		
+		{
+            "key" : "ALT 2" ,
+            "values" : [ [ 949190400000 , 59280] , 
+			[ 980812800000 , 59212] , 
+			[ 1012348800000 , 59773] , 
+			[ 1043884800000 , 62583] , 
+			[ 1075420800000 , 68537] , 
+			[ 1107043200000 , 72572] , 
+			[ 1138579200000 , 73681] , 
+			[ 1170115200000 , 78895] , 
+			[ 1201651200000 , 82536] , 
+			[ 1233273600000 , 79945] , 
+			[ 1264809600000 , 82647] , 
+			[ 1296345600000 , 91610] , 
+			[ 1327881600000 , 93548] , 
+			[ 1359504000000 , 104068],
+			[ 1391040000000 , 110088],
+			[ 1422576000000 , 116234],
+			[ 1454112000000 , 122731]]
+        } ,
+		
+		{
+            "key" : "ALT 3" ,
+            "values" : [ [ 949190400000 , 9760] , 
+			[ 980812800000 , 9151] , 
+			[ 1012348800000 , 10202] , 
+			[ 1043884800000 , 11272] , 
+			[ 1075420800000 , 11487] , 
+			[ 1107043200000 , 12824] , 
+			[ 1138579200000 , 15421] , 
+			[ 1170115200000 , 18311] , 
+			[ 1201651200000 , 19287] , 
+			[ 1233273600000 , 17584] , 
+			[ 1264809600000 , 20238] , 
+			[ 1296345600000 , 20222] , 
+			[ 1327881600000 , 21631] , 
+			[ 1359504000000 , 21998],
+			[ 1391040000000 , 22489],
+			[ 1422576000000 , 24218],
+			[ 1454112000000 , 24006]]
+        } ,
+		
+		{
+            "key" : "DEMOLITION" ,
+            "values" : [ [ 949190400000 , 1562] , 
+			[ 980812800000 , 1592] , 
+			[ 1012348800000 , 2023] , 
+			[ 1043884800000 , 2390] , 
+			[ 1075420800000 , 3025] , 
+			[ 1107043200000 , 3687] , 
+			[ 1138579200000 , 3901] , 
+			[ 1170115200000 , 3505] , 
+			[ 1201651200000 , 2653] , 
+			[ 1233273600000 , 1424] , 
+			[ 1264809600000 , 1094] , 
+			[ 1296345600000 , 1185] , 
+			[ 1327881600000 , 1268] , 
+			[ 1359504000000 , 1576],
+			[ 1391040000000 , 1870],
+			[ 1422576000000 , 2189],
+			[ 1454112000000 , 2252]]
+        } 
+
+    ];
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.stackedAreaChart()
+            .useInteractiveGuideline(true)
+            .x(function(d) { return d[0] })
+            .y(function(d) { return d[1] })
+			.color(['#9BBB59', '#EEB058', '#C0504D', '#8064A2', '#49D9FF'])
+            .controlLabels({stacked: "Stacked"}) 
+			//.showControls(false)  
+			
+
+			
+			//.interpolate("step")
+			
+			//.padData(true)
+			//.yDomain([0,3250000])
+            .duration(300);
+        chart.xAxis
+			//.ticks(10)
+			//.staggerLabels(true) 
+			.tickFormat(function(d) { return d3.time.format(' %Y')(new Date(d)) });
+			
+		chart.xScale(d3.time.scale());
+		
+
+	 
+	 
+	 
+	 
+		
+        chart.yAxis
+			.ticks(8)
+			.tickFormat(d3.format('.2s'));
+			
+			
+			//Example of how to customize the tooltip.
+		chart.interactiveLayer
+			.tooltip
+			.headerFormatter(function(d) {return "Year: " + d3.time.format('%Y')(new Date(d));})
+			.valueFormatter(d3.format(','));
+			
+			d3.select('#chart1')
+			  .append("text")
+			  .attr("x", 450)             
+			  .attr("y", 80)
+			  .attr("text-anchor", "right")  
+			  .style("font-size", "18px")		  
+			  .text("");
+			  
+
+			
+        //chart.legend.vers('furious');
+        d3.select('#chart1')
+            .datum(histcatexplong)
+            .transition().duration(1000)
+            .call(chart)
+            .each('start', function() {
+                setTimeout(function() {
+                    d3.selectAll('#chart1 *').each(function() {
+                        if(this.__transition__)
+                            this.__transition__.duration = 1;
+                    })
+                }, 0)
+            });
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+</script>
+</body>
+</html>
